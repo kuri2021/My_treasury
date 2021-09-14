@@ -11,7 +11,10 @@ import java.util.*
 
 class Arrays_example : AppCompatActivity() {
 
-    var array= arrayOf("aostest1","aostest2","aostest5","aostest21","aostest221")
+    companion object{
+        var array= arrayOf("aostest1","aostest2","aostest5","aostest21","aostest221")
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

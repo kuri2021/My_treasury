@@ -2,8 +2,11 @@ package com.kuri2021.Test_Project.camera
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.ScaleGestureDetector
 import android.widget.ImageView
@@ -20,6 +23,7 @@ import androidx.core.content.ContextCompat
 import com.kuri2021.Test_Project.R
 import kotlinx.android.synthetic.main.carnera_zoom.*
 import java.io.File
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -31,6 +35,7 @@ class Camera_Zoom : AppCompatActivity() {
 
     private lateinit var outputDirectory:File
     private lateinit var cameraExecutor:ExecutorService
+    var imgName = "osz.png"
 
 //    abstract val lifecycleOwner:LifecycleOwner
 
@@ -77,8 +82,7 @@ class Camera_Zoom : AppCompatActivity() {
         // been taken
         // 사진이 캡처된 후 트리거되는 이미지 캡처 리스너를 설정합니다.
         // 찍은
-        imageCapture.takePicture(
-            outputOptions, ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
+        imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
                     Log.e("body_exc->", "Photo capture failed: ${exc.message}", exc)
                 }
@@ -90,10 +94,14 @@ class Camera_Zoom : AppCompatActivity() {
                     val msg = "Photo capture succeeded: $savedUri"
                     iv.scaleType=ImageView.ScaleType.CENTER
                     iv.setImageURI(savedUri)
+
                     val drawable = iv.getDrawable()
                     tv_2.text=drawable.toString()
+                    Log.d("body_drawable->",drawable.toString())
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                     Log.d("body_msg->", msg.toString())
+
+
                 }
             })
     }

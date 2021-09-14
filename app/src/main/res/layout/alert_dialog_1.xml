@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/alerte_back"
+    app:layout_constraintCircleRadius="11dp">
+
+    <TextView
+        android:id="@+id/alert_dialog1_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="14.5dp"
+        android:text="아이디/비밀번호 찾기"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#26707070"
+        android:layout_below="@+id/alert_dialog1_title"
+        android:layout_marginBottom="27.5dp"/>
+
+    <TextView
+        android:id="@+id/alert_dialog1_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line"
+        android:text="휴대폰으로 회원 정보가 전송되었습니다."
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/alert_dialog1_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alert_dialog1_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="16.4dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/alert_big_activate_btn"
+        android:backgroundTint="#ffff0000"
+        android:text="닫기"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>
