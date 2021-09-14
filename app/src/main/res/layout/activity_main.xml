@@ -35,4 +35,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="커스텀 다이얼로그 테스트 텍스트뷰"/>
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카메라 크롭"/>
+    <Button
+        android:id="@+id/btn6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카메라 크롭_210914"/>
+
 </LinearLayout>

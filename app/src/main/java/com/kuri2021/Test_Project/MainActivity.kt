@@ -11,9 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.kuri2021.Test_Project.Arrays.Arrays_example
+import com.kuri2021.Test_Project.Camera_Crop.Canera_Crop
+import com.kuri2021.Test_Project.Camera_Crop_210914.Camera_Crop_210914
 import com.kuri2021.Test_Project.Custom_Dialog.Custom_Dialog
 import com.kuri2021.Test_Project.Toast.Toast_Test
 import com.kuri2021.Test_Project.camera.Camera_Zoom
+import com.kuri2021.Test_Project.camera.camera_next
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -34,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         var btn2: Button = findViewById(R.id.btn2)
         var btn3: Button = findViewById(R.id.btn3)
         var btn4: Button = findViewById(R.id.btn4)
+        var btn5:Button=findViewById(R.id.btn5)
+        var btn6:Button=findViewById(R.id.btn6)
 
         btn1.setOnClickListener {
             var intent = Intent(this, Arrays_example::class.java)
@@ -58,6 +63,14 @@ class MainActivity : AppCompatActivity() {
                 "확인",
                 "test",
             )
+        }
+        btn5.setOnClickListener {
+            var intent=Intent(this,Canera_Crop::class.java)
+            startActivity(intent)
+        }
+        btn6.setOnClickListener {
+            var intent=Intent(this,Camera_Crop_210914::class.java)
+            startActivity(intent)
         }
 
 

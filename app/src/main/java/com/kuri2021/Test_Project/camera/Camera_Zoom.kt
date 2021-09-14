@@ -3,13 +3,12 @@ package com.kuri2021.Test_Project.camera
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.ScaleGestureDetector
-import android.widget.ImageView
+import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,26 +21,39 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.kuri2021.Test_Project.R
 import kotlinx.android.synthetic.main.carnera_zoom.*
-import java.io.File
-import java.io.FileOutputStream
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+
 class Camera_Zoom : AppCompatActivity() {
 
-    private var imageCapture:ImageCapture?=null
+    private var imageCapture: ImageCapture? = null
 
-    private lateinit var outputDirectory:File
-    private lateinit var cameraExecutor:ExecutorService
+    private lateinit var outputDirectory: File
+    private lateinit var cameraExecutor: ExecutorService
     var imgName = "osz.png"
+    var bitmap2=null
+
+
 
 //    abstract val lifecycleOwner:LifecycleOwner
+
+    companion object {
+        private const val TAG = "CameraXBasic"
+        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.carnera_zoom)
+
+        // 이미지 캡쳐하는 use case를 빌더패턴을 통해 구현한다.
+        imageCapture = ImageCapture.Builder().build()
 
         if (allPermissionsGranted()) {
             startCamera()
@@ -51,59 +63,11 @@ class Camera_Zoom : AppCompatActivity() {
 
         button1.setOnClickListener { takePhoto() }
 
-        outputDirectory=getOutputDirectory()
+        outputDirectory = getOutputDirectory()
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
 
-    }
-
-
-
-
-
-    private fun takePhoto(){
-        // Get a stable reference of the modifiable image capture use case
-        // 수정 가능한 이미지 캡처 사용 사례의 안정적인 참조 가져오기
-        val imageCapture = imageCapture ?: return
-        Log.d("body_imageCapture->",""+imageCapture.toString())
-
-        // Create time-stamped output file to hold the image
-        // 이미지를 저장할 타임스탬프 출력 파일 생성
-        val photoFile = File(outputDirectory, SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg")
-        Log.d("body_photoFile->",""+photoFile.toString())
-
-        // Create output options object which contains file + metadata
-        // 파일 + 메타데이터를 포함하는 출력 옵션 객체 생성
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-        Log.d("body_outputOptions->",""+outputOptions.toString())
-
-        // Set up image capture listener, which is triggered after photo has
-        // been taken
-        // 사진이 캡처된 후 트리거되는 이미지 캡처 리스너를 설정합니다.
-        // 찍은
-        imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
-                override fun onError(exc: ImageCaptureException) {
-                    Log.e("body_exc->", "Photo capture failed: ${exc.message}", exc)
-                }
-
-                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val savedUri = Uri.fromFile(photoFile)
-                    Log.d("body_savedUri->", savedUri.toString())
-                    tv_1.text=savedUri.toString()
-                    val msg = "Photo capture succeeded: $savedUri"
-                    iv.scaleType=ImageView.ScaleType.CENTER
-                    iv.setImageURI(savedUri)
-
-                    val drawable = iv.getDrawable()
-                    tv_2.text=drawable.toString()
-                    Log.d("body_drawable->",drawable.toString())
-                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    Log.d("body_msg->", msg.toString())
-
-
-                }
-            })
     }
 
     private fun startCamera() {
@@ -121,9 +85,10 @@ class Camera_Zoom : AppCompatActivity() {
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview)
-                val cameraControl = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
+                val cameraControl =
+                    cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
 
-                val cameraInfo=cameraControl.cameraInfo
+                val cameraInfo = cameraControl.cameraInfo
 
 //                cameraInfo.zoomState.observe(lifecycleOwner, Observer { zoomState ->
 //                    // Use the zoom state to retireve information about the zoom ratio, etc
@@ -157,7 +122,11 @@ class Camera_Zoom : AppCompatActivity() {
 
                 //줌 리스너 추
                 seebar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    override fun onProgressChanged(
+                        seekBar: SeekBar?,
+                        progress: Int,
+                        fromUser: Boolean
+                    ) {
                         cameraControl.cameraControl.setLinearZoom(progress / 100.toFloat())
                     }
 
@@ -173,47 +142,133 @@ class Camera_Zoom : AppCompatActivity() {
 
         imageCapture = ImageCapture.Builder().build()
     }
+    private fun takePhoto() {
+        val imageCapture = imageCapture ?: return
 
-//    private fun startCamera() {
-//        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+        // 사진 저장 장소
+        val photoFile = File(outputDirectory, SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg")
+
+        // outputFile의 Configuration을 담당
+        val outputOptions = ImageCapture
+            .OutputFileOptions
+            .Builder(photoFile)
+            .build()
+
+        imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
+                // 사진을 찍고 어떻게 저장할 지에 대한 구현부
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    val savedUri = Uri.fromFile(photoFile)
+                    val message = "Photo capture succeeded: $savedUri"
+                    Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+                    Log.d(TAG, message)
+
+//                    val bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageFile)
+                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, savedUri)
+                    var test=cropImage(bitmap,iv,iv2)
+                    Log.d("body_test",test.toString())
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    Log.e(TAG, "Photo capture failed: ${exception.message}", exception)
+                }
+            }
+        )
+    }
+    private fun cropImage(bitmap: Bitmap, frame: View, reference: View): ByteArray {
+        val heightOriginal = frame.height
+        val widthOriginal = frame.width
+        val heightFrame = reference.height
+        val widthFrame = reference.width
+        val leftFrame = reference.left
+        val topFrame = reference.top
+        val heightReal = bitmap.height
+        val widthReal = bitmap.width
+        val widthFinal = widthFrame * widthReal / widthOriginal
+        val heightFinal = heightFrame * heightReal / heightOriginal
+        val leftFinal = leftFrame * widthReal / widthOriginal
+        val topFinal = topFrame * heightReal / heightOriginal
+        val bitmapFinal = Bitmap.createBitmap(bitmap, leftFinal, topFinal, widthFinal, heightFinal)
+        val stream = ByteArrayOutputStream()
+        bitmapFinal.compress(Bitmap.CompressFormat.JPEG, 100, stream) //100 is the best quality possibe
+        return stream.toByteArray()
+    }
+
+    // startCamera()
+
+
+
+
+//    private fun takePhoto() {
+//        // Get a stable reference of the modifiable image capture use case
+//        // 수정 가능한 이미지 캡처 사용 사례의 안정적인 참조 가져오기
+//        val imageCapture = imageCapture ?: return
+//        Log.d("body_imageCapture->", "" + imageCapture.toString())
 //
-//        cameraProviderFuture.addListener(Runnable {
-//            // Used to bind the lifecycle of cameras to the lifecycle owner
-//            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+//        // Create time-stamped output file to hold the image
+//        // 이미지를 저장할 타임스탬프 출력 파일 생성
+//        val photoFile = File(
+//            outputDirectory,
+//            SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg"
+//        )
+//        Log.d("body_photoFile->", "" + photoFile.toString())
 //
-//            // Preview
-//            val preview = Preview.Builder()
-//                .build()
-//                .also {
-//                    it.setSurfaceProvider(viewFinder.surfaceProvider)
+//        // Create output options object which contains file + metadata
+//        // 파일 + 메타데이터를 포함하는 출력 옵션 객체 생성
+//        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+//        Log.d("body_outputOptions->", "" + outputOptions.toString())
+//
+//        // Set up image capture listener, which is triggered after photo has
+//        // been taken
+//        // 사진이 캡처된 후 트리거되는 이미지 캡처 리스너를 설정합니다.
+//        // 찍은
+//        imageCapture.takePicture(
+//            outputOptions,
+//            ContextCompat.getMainExecutor(this),
+//            object : ImageCapture.OnImageSavedCallback {
+//                override fun onError(exc: ImageCaptureException) {
+//                    Log.e("body_exc->", "Photo capture failed: ${exc.message}", exc)
 //                }
 //
-//            // Select back camera as a default
-//            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+//                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+//                    val savedUri = Uri.fromFile(photoFile)
+//                    Log.d("body_savedUri->", savedUri.toString())
+//                    tv_1.text = savedUri.toString()
+//                    val msg = "Photo capture succeeded: $savedUri"
+//                    iv.scaleType = ImageView.ScaleType.CENTER
+//                    iv.setImageURI(savedUri)
 //
-//            try {
-//                // Unbind use cases before rebinding
-//                cameraProvider.unbindAll()
+//                    val drawable = iv.getDrawable()
+//                    tv_2.text = drawable.toString()
 //
-//                // Bind use cases to camera
-//                cameraProvider.bindToLifecycle(
-//                    this, cameraSelector, preview)
 //
-//            } catch(exc: Exception) {
-//                Log.e(TAG, "Use case binding failed", exc)
-//            }
+//                    Log.d("body_drawable->", drawable.toString())
+//                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+//                    Log.d("body_msg->", msg.toString())
+//                    val bitmap = (iv.getDrawable() as BitmapDrawable).bitmap
 //
-//        }, ContextCompat.getMainExecutor(this))
+////                    var intent=Intent(this@Camera_Zoom,camera_next::class.java)
+////                    intent.put
+////                    startActivity(intent)
+//                    iv2.setImageBitmap(bitmap)
+//
+//                    Log.d("body_bitmap",bitmap.toString())
+//                    savebitmaptojpg(bitmap,"test1","test2")
+//
+//                }
+//            })
 //    }
 
+
+
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(
-            baseContext, it) == PackageManager.PERMISSION_GRANTED
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+//        ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED
     }
 
     private fun getOutputDirectory(): File {
         val mediaDir = externalMediaDirs.firstOrNull()?.let {
-            File(it, resources.getString(R.string.app_name)).apply { mkdirs() } }
+            File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
+        }
         return if (mediaDir != null && mediaDir.exists())
             mediaDir else filesDir
     }
@@ -225,61 +280,42 @@ class Camera_Zoom : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode== REQUEST_CODE_PERMISSIONS){
-            if(allPermissionsGranted()){
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
                 startCamera()
-            }else{
+            } else {
                 Toast.makeText(this, "응~안되 돌아가", Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
     }
 
-    companion object {
-        private const val TAG = "CameraXBasic"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-        private const val REQUEST_CODE_PERMISSIONS = 10
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-    }
 
-//    private fun startCamera() {
-//        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-//
-//        cameraProviderFuture.addListener(Runnable {
-//            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-//
-//            val preview = Preview.Builder().build().also {
-//                it.setSurfaceProvider(viewFinder.surfaceProvider)
-//            }
-//
-//            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-//
-//            try {
-//                cameraProvider.unbindAll()
-//                cameraProvider.bindToLifecycle(this, cameraSelector, preview)
-//                val cameraControl = cameraProvider.bindToLifecycle(
-//                    this, cameraSelector, preview, imageCapture
-//                )
-//
-//                //줌 리스너 추
-//                seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-//                    override fun onProgressChanged(
-//                        seekBar: SeekBar?,
-//                        progress: Int,
-//                        fromUser: Boolean
-//                    ) {
-//                        cameraControl.cameraControl.setLinearZoom(progress / 100.toFloat())
-//                    }
-//
-//                    override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-//                    override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-//                })
-//            } catch (exc: Exception) {
-//                Log.e(TAG, "Use case binding faild", exc)
-//            }
-//        }, ContextCompat.getMainExecutor(this))
-//
-//        imageCapture = ImageCapture.Builder().build()
-//    }
-//
+    fun savebitmaptojpg(bitmap: Bitmap, strfilepath: String, filename: String) {
+        var file = File(strfilepath)
+        if (!file.exists()) {
+            file.mkdir()
+        }
+
+        var fileItem=File(strfilepath+filename)
+        var outputStream: OutputStream? =null
+
+        try{
+            fileItem.createNewFile()
+            outputStream=FileOutputStream(fileItem)
+
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,outputStream)
+        }catch (e:java.lang.Exception){
+            e.printStackTrace()
+        }finally {
+            try{
+                if (outputStream != null) {
+                    outputStream.close()
+                }
+            }catch (e:IOException){
+                e.printStackTrace()
+            }
+        }
+
+    }
 }

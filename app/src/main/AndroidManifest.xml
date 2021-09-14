@@ -7,9 +7,13 @@
     -->
     <uses-feature android:name="android.hardware.camera.any" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAG" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +22,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Camera_Permission">
-        <activity android:name=".Toast.Toast_Test"></activity>
+        <activity android:name=".Camera_Crop_210914.Camera_Crop_210914"></activity>
+        <activity android:name=".Camera_Crop.Canera_Crop" />
+        <activity android:name=".camera.camera_next" />
+        <activity android:name=".Toast.Toast_Test" />
         <activity android:name=".Arrays.Arrays_example" />
         <activity android:name=".MainActivity">
             <intent-filter>
