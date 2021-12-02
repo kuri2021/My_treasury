@@ -11,7 +11,7 @@ import androidx.core.app.ActivityCompat
 import com.kuri2021.Test_Project.R
 
 
-class Camera_Crop_210914 : AppCompatActivity(), PhotoFragment.OnFragmentInteractionListener() {
+class Camera_Crop_210914 : AppCompatActivity() {
 
     var PERMISSION_ALL = 1
     var flagPermissions = false

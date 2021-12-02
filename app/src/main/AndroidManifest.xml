@@ -10,10 +10,32 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAG" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
+    <uses-feature android:name="android.hardware.camera.flash" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
+    <queries>
+
+        <!-- Browser -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <data android:scheme="http" />
+        </intent>
+
+        <!-- Camera -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+
+        <!-- Gallery -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -22,7 +44,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Camera_Permission">
-        <activity android:name=".Camera_Crop_210914.Camera_Crop_210914"></activity>
+        <activity
+            android:name=".Camera_Flash_Light21_11_30.Camera_Flash_Light21_11_30"
+            android:exported="true" />
+        <activity
+            android:name=".Camera_FlashLight.Camera_FlashLight"
+            android:exported="true" />
+        <activity
+            android:name=".Gamail.Gmail_Test"
+            android:exported="true" />
+        <activity
+            android:name=".crop_211019.crop_211019"
+            android:exported="true" />
+        <activity android:name=".Camera_Crop_210915.croperino" />
+        <activity android:name=".Camera_Crop_210914.Camera_Crop_210914" />
         <activity android:name=".Camera_Crop.Canera_Crop" />
         <activity android:name=".camera.camera_next" />
         <activity android:name=".Toast.Toast_Test" />

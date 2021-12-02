@@ -45,5 +45,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="카메라 크롭_210914"/>
+    <Button
+        android:id="@+id/btn7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카메라 크롭_210915"/>
+    <Button
+        android:id="@+id/btn8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="앨범 크롭_211019"/>
+    <Button
+        android:id="@+id/btn9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gmail_21.11.10"/>
+
+    <Button
+        android:id="@+id/btn10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="_FlashLight"/>
+
 
 </LinearLayout>

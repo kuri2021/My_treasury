@@ -38,7 +38,7 @@ class PhotoFragment: Fragment() , SurfaceHolder.Callback {
     lateinit var previewSizeOptimal:Camera.Size
 
     open interface OnFragmentInteractionListener {
-        onFragmentInteraction(bitmap:Bitmap)
+//        onFragmentInteraction(bitmap:Bitmap)
     }
 
 
@@ -64,12 +64,12 @@ class PhotoFragment: Fragment() , SurfaceHolder.Callback {
 
 
 
-        make_photo_button.setOnClickListener {
-            if (camera!=null){
-                camera.takePicture(myShutterCallback,
-                    myPictureCallback_RAW, myPictureCallback_JPG);
-            }
-        }
+//        make_photo_button.setOnClickListener {
+//            if (camera!=null){
+//                camera.takePicture(myShutterCallback,
+//                    myPictureCallback_RAW, myPictureCallback_JPG);
+//            }
+//        }
 
 
         return view
@@ -200,8 +200,8 @@ class PhotoFragment: Fragment() , SurfaceHolder.Callback {
         previewing = false;
     }
 
-    private fun myShutterCallback: Camera.ShutterCallback = Camera.ShutterCallback {
-    }
+//    private fun myShutterCallback: Camera.ShutterCallback = Camera.ShutterCallback {
+//    }
 
 
 

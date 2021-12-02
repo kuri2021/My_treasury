@@ -1,22 +1,20 @@
 package com.kuri2021.Test_Project
 
-import android.Manifest
 import android.app.Dialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.kuri2021.Test_Project.Arrays.Arrays_example
 import com.kuri2021.Test_Project.Camera_Crop.Canera_Crop
 import com.kuri2021.Test_Project.Camera_Crop_210914.Camera_Crop_210914
+import com.kuri2021.Test_Project.Camera_Crop_210915.croperino
+import com.kuri2021.Test_Project.Camera_FlashLight.Camera_FlashLight
 import com.kuri2021.Test_Project.Custom_Dialog.Custom_Dialog
+import com.kuri2021.Test_Project.Gamail.Gmail_Test
 import com.kuri2021.Test_Project.Toast.Toast_Test
 import com.kuri2021.Test_Project.camera.Camera_Zoom
-import com.kuri2021.Test_Project.camera.camera_next
+import com.kuri2021.Test_Project.crop_211019.crop_211019
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -39,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         var btn4: Button = findViewById(R.id.btn4)
         var btn5:Button=findViewById(R.id.btn5)
         var btn6:Button=findViewById(R.id.btn6)
+        var btn7:Button=findViewById(R.id.btn7)
+        var btn8=findViewById<Button>(R.id.btn8)
 
         btn1.setOnClickListener {
             var intent = Intent(this, Arrays_example::class.java)
@@ -72,7 +72,21 @@ class MainActivity : AppCompatActivity() {
             var intent=Intent(this,Camera_Crop_210914::class.java)
             startActivity(intent)
         }
-
-
+        btn7.setOnClickListener {
+            var intent=Intent(this,croperino::class.java)
+            startActivity(intent)
+        }
+        btn8.setOnClickListener {
+            var intent=Intent(this,crop_211019::class.java)
+            startActivity(intent)
+        }
+        btn9.setOnClickListener {
+            var intent=Intent(this,Gmail_Test::class.java)
+            startActivity(intent)
+        }
+        btn10.setOnClickListener {
+            var intent=Intent(this, Camera_FlashLight::class.java)
+            startActivity(intent)
+        }
     }
 }

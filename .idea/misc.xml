@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android Studio/Camera_Permission/app/src/main/res/layout/activity_camera_crop210914.xml" value="0.1358695652173913" />
+        <entry key="..\:/Android Studio/Camera_Permission/app/src/main/res/layout/activity_camera_crop210915.xml" value="0.1358695652173913" />
+        <entry key="..\:/Android Studio/Camera_Permission/app/src/main/res/layout/activity_camera_flashlight211021.xml" value="0.24583333333333332" />
+        <entry key="..\:/Android Studio/Camera_Permission/app/src/main/res/layout/activity_canera_crop.xml" value="0.1358695652173913" />
+        <entry key="..\:/Android Studio/Camera_Permission/app/src/main/res/layout/activity_crop211019.xml" value="0.24583333333333332" />
+        <entry key="..\:/Android Studio/Camera_Permission/app/src/main/res/layout/activity_main.xml" value="0.1358695652173913" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/drawable/shape.xml" value="0.24895833333333334" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_arrays_example.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_camera_crop210914.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_camera_crop210915.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_camera_flash_light.xml" value="0.25" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_camera_flash_light211130.xml" value="0.5" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_croperino.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_gmail_test.xml" value="1.0763358778625953" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_main.xml" value="0.24230072463768115" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_toast_test.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/alert_dialog_1.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/carnera_zoom.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/custom_toast.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/fragment_image.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/fragment_photo.xml" value="0.75" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/test_timer.xml" value="0.23324275362318841" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -164,8 +164,6 @@ class Camera_Zoom : AppCompatActivity() {
 
 //                    val bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageFile)
                     val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, savedUri)
-                    var test=cropImage(bitmap,iv,iv2)
-                    Log.d("body_test",test.toString())
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -173,24 +171,6 @@ class Camera_Zoom : AppCompatActivity() {
                 }
             }
         )
-    }
-    private fun cropImage(bitmap: Bitmap, frame: View, reference: View): ByteArray {
-        val heightOriginal = frame.height
-        val widthOriginal = frame.width
-        val heightFrame = reference.height
-        val widthFrame = reference.width
-        val leftFrame = reference.left
-        val topFrame = reference.top
-        val heightReal = bitmap.height
-        val widthReal = bitmap.width
-        val widthFinal = widthFrame * widthReal / widthOriginal
-        val heightFinal = heightFrame * heightReal / heightOriginal
-        val leftFinal = leftFrame * widthReal / widthOriginal
-        val topFinal = topFrame * heightReal / heightOriginal
-        val bitmapFinal = Bitmap.createBitmap(bitmap, leftFinal, topFinal, widthFinal, heightFinal)
-        val stream = ByteArrayOutputStream()
-        bitmapFinal.compress(Bitmap.CompressFormat.JPEG, 100, stream) //100 is the best quality possibe
-        return stream.toByteArray()
     }
 
     // startCamera()
