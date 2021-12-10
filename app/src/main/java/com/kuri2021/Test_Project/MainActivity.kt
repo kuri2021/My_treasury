@@ -10,6 +10,7 @@ import com.kuri2021.Test_Project.Camera_Crop.Canera_Crop
 import com.kuri2021.Test_Project.Camera_Crop_210914.Camera_Crop_210914
 import com.kuri2021.Test_Project.Camera_Crop_210915.croperino
 import com.kuri2021.Test_Project.Camera_FlashLight.Camera_FlashLight
+import com.kuri2021.Test_Project.CoordinatorLayout.CoordinatorLayout_Activity
 import com.kuri2021.Test_Project.Custom_Dialog.Custom_Dialog
 import com.kuri2021.Test_Project.Gamail.Gmail_Test
 import com.kuri2021.Test_Project.Toast.Toast_Test
@@ -86,6 +87,10 @@ class MainActivity : AppCompatActivity() {
         }
         btn10.setOnClickListener {
             var intent=Intent(this, Camera_FlashLight::class.java)
+            startActivity(intent)
+        }
+        btn11.setOnClickListener {
+            var intent=Intent(this, CoordinatorLayout_Activity::class.java)
             startActivity(intent)
         }
     }

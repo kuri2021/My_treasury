@@ -45,6 +45,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Camera_Permission">
         <activity
+            android:name=".Retrofit_test.Retrofit_Test"
+            android:exported="true" />
+        <activity
+            android:name=".CoordinatorLayout.CoordinatorLayout_Activity"
+            android:exported="true"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".Camera_Flash_Light21_11_30.Camera_Flash_Light21_11_30"
             android:exported="true" />
         <activity

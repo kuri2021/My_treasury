@@ -15,16 +15,20 @@
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_camera_crop210915.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_camera_flash_light.xml" value="0.25" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_camera_flash_light211130.xml" value="0.5" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_coordinator_layout.xml" value="0.24583333333333332" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_croperino.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_gmail_test.xml" value="1.0763358778625953" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_main.xml" value="0.24230072463768115" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_retrofit_test.xml" value="0.24583333333333332" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/activity_toast_test.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/alert_dialog_1.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/carnera_zoom.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/coordinator_item.xml" value="0.24583333333333332" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/custom_toast.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/fragment_image.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/fragment_photo.xml" value="0.75" />
         <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/layout/test_timer.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Studio/ex/Camera_Permission/app/src/main/res/menu/menu.xml" value="0.24583333333333332" />
       </map>
     </option>
   </component>

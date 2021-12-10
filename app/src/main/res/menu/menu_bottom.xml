@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_1"
+        android:enabled="true"
+        android:title="item1"/>
+    <item
+        android:id="@+id/item_2"
+        android:enabled="true"
+        android:title="item2"/>
+    <item
+        android:id="@+id/item_3"
+        android:enabled="true"
+        android:title="item3"/>
+    <item
+        android:id="@+id/item_4"
+        android:enabled="true"
+        android:title="item4"/>
+    <item
+        android:id="@+id/item_5"
+        android:enabled="true"
+        android:title="item5"/>
+
+</menu>
