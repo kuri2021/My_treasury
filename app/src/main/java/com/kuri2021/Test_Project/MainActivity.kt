@@ -16,6 +16,7 @@ import com.kuri2021.Test_Project.Gamail.Gmail_Test
 import com.kuri2021.Test_Project.Toast.Toast_Test
 import com.kuri2021.Test_Project.camera.Camera_Zoom
 import com.kuri2021.Test_Project.crop_211019.crop_211019
+import com.kuri2021.Test_Project.kakao_login.Kakao_Login
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -91,6 +92,10 @@ class MainActivity : AppCompatActivity() {
         }
         btn11.setOnClickListener {
             var intent=Intent(this, CoordinatorLayout_Activity::class.java)
+            startActivity(intent)
+        }
+        btn12.setOnClickListener {
+            var intent=Intent(this,Kakao_Login::class.java)
             startActivity(intent)
         }
     }

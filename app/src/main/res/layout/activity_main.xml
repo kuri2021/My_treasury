@@ -71,6 +71,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CoordinatorLayout"/>
+    <Button
+        android:id="@+id/btn12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="kakao_login"/>
 
 
 </LinearLayout>

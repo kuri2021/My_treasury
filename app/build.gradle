@@ -74,6 +74,13 @@ dependencies {
 // If you want to additionally use the CameraX Extensions library
     implementation "androidx.camera:camera-extensions:1.0.0-alpha22"
 
+//    머터리얼 디자인 (스크롤 시 Tool_bar/bottom_navigation hide)
     implementation 'com.google.android.material:material:1.2.0-alpha01'
 
+//    레트로핏
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+//    Gson라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    implementation "com.kakao.sdk:v2-user:2.0.1"
 }
