@@ -7,12 +7,22 @@
     -->
     <uses-feature android:name="android.hardware.camera.any" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAG" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라 권한 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
+    <uses-feature android:name="android.hardware.camera.flash" />
     <uses-feature android:name="android.hardware.camera.flash" />
     <uses-feature
         android:name="android.hardware.camera"
@@ -43,9 +53,32 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Camera_Permission">
+        android:theme="@style/Theme.Camera_Permission"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Text_Auto_Size.Text_Auto_Size_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".Fragment_in_ViewPager_22_01_12.Fragment_in_ViewPager_Main"
+            android:exported="true" />
+        <activity
+            android:name=".iBeacon.DeviceScanActivity"
+            android:exported="true" />
+        <activity
+            android:name=".GPS_21_12_23.GPS_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".permision_21_12_20.Permision"
+            android:exported="true" />
+        <activity
+            android:name=".Kakao_Map.Kakao_Map"
+            android:exported="true" />
+        <activity
+            android:name=".Camera_FlashLight21_12_14.New_Camera_Flash_21_12_14"
+            android:exported="true" />
         <activity
             android:name=".kakao_login.Kakao_Login_susees"
             android:exported="true" />
@@ -87,7 +120,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".camera.Camera_Zoom"/>
+        <activity android:name=".camera.Camera_Zoom" />
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -100,6 +133,10 @@
                     android:scheme="kakaoabb3b1ea82d3d781b1b8b788b984cfdf" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="abb3b1ea82d3d781b1b8b788b984cfdf" />
     </application>
 
 </manifest>

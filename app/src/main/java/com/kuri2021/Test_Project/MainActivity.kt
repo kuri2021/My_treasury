@@ -12,11 +12,17 @@ import com.kuri2021.Test_Project.Camera_Crop_210915.croperino
 import com.kuri2021.Test_Project.Camera_FlashLight.Camera_FlashLight
 import com.kuri2021.Test_Project.CoordinatorLayout.CoordinatorLayout_Activity
 import com.kuri2021.Test_Project.Custom_Dialog.Custom_Dialog
+import com.kuri2021.Test_Project.Fragment_in_ViewPager_22_01_12.Fragment_in_ViewPager_Main
 import com.kuri2021.Test_Project.Gamail.Gmail_Test
+import com.kuri2021.Test_Project.Kakao_Map.Kakao_Map
+import com.kuri2021.Test_Project.Text_Auto_Size.Text_Auto_Size_Activity
 import com.kuri2021.Test_Project.Toast.Toast_Test
 import com.kuri2021.Test_Project.camera.Camera_Zoom
 import com.kuri2021.Test_Project.crop_211019.crop_211019
+//import com.kuri2021.Test_Project.iBeacon.DeviceScanActivity
 import com.kuri2021.Test_Project.kakao_login.Kakao_Login
+import com.kuri2021.Test_Project.permision_21_12_20.Permision
+import com.kuri2021.Test_Project.permision_21_12_20.User_Info1
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -30,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        User_Info1.text_1="이거지"
 
         val PERMISSION_REQUEST_CAMERA = 123
 
@@ -96,6 +103,22 @@ class MainActivity : AppCompatActivity() {
         }
         btn12.setOnClickListener {
             var intent=Intent(this,Kakao_Login::class.java)
+            startActivity(intent)
+        }
+        btn13.setOnClickListener {
+            var intent=Intent(this,Kakao_Map::class.java)
+            startActivity(intent)
+        }
+        btn14.setOnClickListener {
+            var intent=Intent(this,Permision::class.java)
+            startActivity(intent)
+        }
+        btn15.setOnClickListener {
+           var intent=Intent(this,Fragment_in_ViewPager_Main::class.java)
+            startActivity(intent)
+        }
+        btn16.setOnClickListener {
+            var intent=Intent(this,Text_Auto_Size_Activity::class.java)
             startActivity(intent)
         }
     }
